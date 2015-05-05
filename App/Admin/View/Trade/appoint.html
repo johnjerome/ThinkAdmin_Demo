@@ -1,0 +1,57 @@
+<div class="row-fluid">
+    <div class="span12">
+        <form method="post" class="form-horizontal J_ajaxForm no-margin" action="{:U('admin/trade/appoint')}">
+            <input type="hidden" name="uid" value="{$userinfo.id}">
+            <fieldset>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>用户:&nbsp;{$userinfo.userName}</td>
+                        </tr>
+                        <tr class="item-default">
+                            <td align="right" style="width: 50%;">
+                                <select id="sel_all_area" multiple="multiple" size="10" style="width:100%;">
+                                    <volist name="alllist" id="vo">
+                                        <option value="{$vo.id}">{$vo.productName}</option>
+                                    </volist>
+                                </select>
+                            </td>
+                            <td style="width: 50px;" valign="middle">
+                                <div class="margin-bottom-10">
+                                    <a class="btn btn-small" id="btn_select_all_area">
+                                        <span class="icon-forward"></span>
+                                    </a>
+                                </div>
+                                <div class="margin-bottom-10">
+                                    <a class="btn btn-small" id="btn_choose_selected_area">
+                                        <span class="icon-chevron-right"></span>
+                                    </a>
+                                </div>
+                                <div class="margin-bottom-10">
+                                    <a class="btn btn-small" id="btn_remove_selected_area">
+                                        <span class="icon-chevron-left"></span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="btn btn-small" id="btn_remove_all_area">
+                                        <span class="icon-backward"></span>
+                                    </a>
+                                </div>
+                            </td>
+                            <td style="width: 50%;">
+                                <select id="sel_selected_areas" multiple="multiple" size="10" style="width:100%;">
+                                    <volist name="haslist" id="vo">
+                                        <option value="{$vo.id}">{$vo.productName}</option>
+                                    </volist>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <div class="span9 offset3">
+                <button id="appointSubmit" class="btn purple">保存</button>
+            </div>
+        </form>
+    </div>
+</div>

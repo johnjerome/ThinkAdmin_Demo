@@ -1,0 +1,107 @@
+<empty name="info">
+    <php>$formUrl = U('admin/user/ajax_add');$isModify = false;</php>
+<else/>
+    <php>$formUrl = U('admin/user/ajax_edit');$isModify = true;</php>
+</empty>
+<div class="row-fluid">
+    <div class="span12">
+        <form id="editForm" method="post" class="form-horizontal no-margin" action="{$formUrl}">
+            <div class="alert alert-error hide">
+                <button class="close" data-dismiss="alert"></button>
+                请按要求填写数据
+            </div>
+            <if condition="$isModify">
+            <input type="hidden" name="post[id]" value="{$info.id}">
+            <div class="control-group">
+                <label class="control-label span3">用户名</label>
+                <div class="controls span9">
+                    <input type="text" class="m-wrap middle" value="{$info.userName}" disabled />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">密码</label>
+                <div class="controls span9">
+                    <input type="password" name="post[password]" class="m-wrap middle" value="" />
+                    <span class="help-inline">为空则不修改</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">用户类型</label>
+                <div class="controls span9">
+                    <select class="m-wrap middle" disabled>
+                        <option value="1" <if condition="$info['usertype'] eq 1">selected</if>>商户用户</option>
+                        <option value="0" <if condition="$info['usertype'] eq 0">selected</if>>普通用户</option>
+                    </select>
+                </div>
+            </div>
+            <else/>
+            <div class="control-group">
+                <label class="control-label span3">用户名<span class="required">*</span></label>
+                <div class="controls span9">
+                    <input type="text" name="post[username]" class="m-wrap middle required" value="" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">密码<span class="required">*</span></label>
+                <div class="controls span9">
+                    <input type="password" name="post[password]" class="m-wrap middle required" value="" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">用户类型</label>
+                <div class="controls span9">
+                    <select name="post[usertype]" class="m-wrap middle">
+                        <option value="1" <if condition="$info['usertype'] eq 1">selected</if>>商户用户</option>
+                        <option value="0" <if condition="$info['usertype'] eq 0">selected</if>>普通用户</option>
+                    </select>
+                </div>
+            </div>
+            </if>
+            <div class="control-group">
+                <label class="control-label span3">Email<span class="required">*</span></label>
+                <div class="controls span9">
+                    <div class="input-icon left">
+                        <i class="icon-envelope"></i>
+                        <input type="text" name="post[email]" class="m-wrap middle" value="{$info.email}" />
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">手机号码<span class="required">*</span></label>
+                <div class="controls span9">
+                    <input type="text" name="post[mobile]" class="m-wrap middle" value="{$info.mobile}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">真实姓名</label>
+                <div class="controls span9">
+                    <input type="text" name="post[realname]" class="m-wrap middle" value="{$info.realName}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">联系地址</label>
+                <div class="controls span9">
+                    <input type="text" name="post[address]" class="m-wrap middle" value="{$info.address}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">性别</label>
+                <div class="controls span9">
+                    <select name="post[sex]" class="m-wrap middle">
+                        <option value="1" <if condition="$info['sex'] eq 1">selected</if>>男</option>
+                        <option value="0" <if condition="$info['sex'] eq 0">selected</if>>女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">生日</label>
+                <div class="controls span9">
+                    <input type="text" name="post[birthday]" class="m-wrap middle" value="{$info.birthday}" />
+                </div>
+            </div>
+            <div class="span9 offset3">
+                <button type="submit" class="btn purple">保存</button>
+            </div>
+        </form>
+    </div>
+</div>

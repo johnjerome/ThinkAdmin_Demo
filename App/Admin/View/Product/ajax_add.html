@@ -1,0 +1,87 @@
+<div class="row-fluid">
+    <div class="span12">
+        <form method="post" class="form-horizontal J_ajaxForm no-margin" action="{:U('admin/product/'.($info['id']?'edit':'add'))}" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{$info.id}">
+            <div class="control-group">
+                <label class="control-label span3">名称<span class="required">*</span></label>
+                <div class="controls span9">
+                    <input type="text" name="productName" class="m-wrap middle" value="{$info.productName}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">分类<span class="required">*</span></label>
+                <div class="controls span9">
+                    <select name="typeId" class="m-wrap middle">
+                        <option value="0">--请选择--</option>
+                        <volist name=":fn_get_typeinfo_by_type(1)" id="vo">
+                        <option value="{$vo.id}" <if condition="$vo['id'] eq $info['typeId']">selected</if>>{$vo.typeName}</option>
+                        </volist>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">价格<span class="required">*</span></label>
+                <div class="controls span9">
+                    <input type="text" name="productPrice" class="m-wrap middle" value="{$info.productPrice}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">原价</label>
+                <div class="controls span9">
+                    <input type="text" name="oldProductPrice" class="m-wrap middle" value="{$info.oldProductPrice}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">缩略图</label>
+                <div class="controls span9">
+                    <notempty name="info.thumb">
+                    <div style="max-width:193px;max-height:343px;" class="margin-bottom-10">
+                        <a href="{$info.thumb}" target="_blank"><img src="{$info.thumb}"></a>
+                        <input type="hidden" name="thumb" value="{$info.thumb}">
+                    </div>
+                    </notempty>
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 193px; max-height: 343px;"></div>
+                        <div>
+                            <span class="btn btn-file">
+                                <span class="fileupload-new">请选择图片</span>
+                                <span class="fileupload-exists">重选</span>
+                                <input type="file" name="Filedata" class="default" />
+                            </span>
+                            <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">移除</a>
+                        </div>
+                    </div>
+                    <span class="label label-important">注意!</span>
+                    <span>请在最新的Firefox，Chrome，Opera，Safari或IE10浏览器下打开</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">模板编码<span class="required">*</span></label>
+                <div class="controls span9">
+                    <input type="text" name="tplCode" class="m-wrap middle" value="{$info.tplCode}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">热门</label>
+                <div class="controls span9">
+                    <select name="isHot" class="m-wrap middle">
+                        <option value="1" <if condition="$info['isHot'] eq 1">selected</if>>是</option>
+                        <option value="0" <if condition="$info['isHot'] eq 0">selected</if>>否</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label span3">虚拟已售数量</label>
+                <div class="controls span9">
+                    <input type="text" name="virtualnum" class="m-wrap middle" value="{$info.virtualnum|default=0}" />
+                    <span class="label label-important">注意!</span>
+                    <span>该数量可设置负值</span>
+                </div>
+            </div>
+            <div class="span9 offset3">
+                <button type="submit" class="btn purple">保存</button>
+                <div class="alert hide"></div>
+            </div>
+        </form>
+    </div>
+</div>
